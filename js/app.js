@@ -1,17 +1,20 @@
-import { obtenerClientes,eliminarCliente } from './API.js';
+import { obtenerClientes,eliminarCliente } from "./API.js";
 
 (function(){
-    const listado = document.querySelector('#listado-clientes');
 
-    document.addEventListener('DOMContentLoaded',mostrarClientes)
-    listado.addEventListener('click',mostrarEliminar)
-
+    const listado = document.querySelector('#listado-clientes')
+    
+    document.addEventListener('DOMContentLoaded', mostrarClientes)
+    
+    listado.addEventListener('click', borrarCliente)
     async function mostrarClientes(){
         const clientes = await obtenerClientes();
-        clientes.forEach( cliente => {
-            const {email,empresa,nombre,telefono,id} = cliente
-                const row = document.createElement('tr')
-                row.innerHTML += `
+
+        
+        clientes.forEach(cliente => {
+            const {nombre,email,telefono,empresa,id} = cliente;
+            const row = document.createElement('tr')
+            row.innerHTML += `
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <p class="text-sm leading-5 font-medium text-gray-700 text-lg  font-bold"> ${nombre} </p>
                     <p class="text-sm leading-10 text-gray-700"> ${email} </p>
@@ -26,21 +29,21 @@ import { obtenerClientes,eliminarCliente } from './API.js';
                     <a href="editar-cliente.html?id=${id}" class="text-teal-600 hover:text-teal-900 mr-5">Editar</a>
                     <a href="#" data-cliente="${id}" class="text-red-600 hover:text-red-900 eliminar">Eliminar</a>
                 </td>
-                `;
-                listado.appendChild(row);
-            }   
+            `;
 
-        )
+            listado.appendChild(row)
+        });
     }
-        
-    function mostrarEliminar(e){
-        if(e.target.classList.contains('eliminar') ){
-            const clienteId = e.target.dataset.cliente;
 
-            const confirmar = confirm('¿Desea eliminar el registro?');
-            if(confirmar){
-                eliminarCliente(clienteId);
+    function borrarCliente(e){
+        
+        if(e.target.classList.contains('eliminar')){
+            const clienteId = (e.target.dataset.cliente);
+            
+            const confirmar = confirm("desea eliminar el cliente?")
+            if (confirmar) {
+                eliminarCliente(clienteId)
             }
         }
-    }    
-})()
+    }
+})(); 

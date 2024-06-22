@@ -1,14 +1,14 @@
-import {mostrarAlerta,validarCampos} from './funciones.js';
-import { nuevoCliente } from './API.js';
 
-(function () {
-    const formulario = document.querySelector('#formulario');
-    formulario.addEventListener('submit',validarCliente)
+import { mostrarMensaje } from "./funciones.js";
+import { nuevoCliente } from "./API.js";
+(function(){
+    const formulario = document.querySelector('#formulario')
+    
+    formulario.addEventListener('submit', validarFormulario)
 
-    function validarCliente(e){
+    function validarFormulario(e){
         e.preventDefault();
 
-        //validar el formulario
         const nombre = document.querySelector('#nombre').value;
         const email = document.querySelector('#email').value;
         const telefono = document.querySelector('#telefono').value;
@@ -18,18 +18,18 @@ import { nuevoCliente } from './API.js';
             nombre,
             email,
             telefono,
-            empresa 
+            empresa
         }
+        if (validarCliente(cliente)) {// si almenos uno es diferente de "" tira falso
+            mostrarMensaje("no se pasó la validación");
+            return;
+        }
+        // console.log(Object.values(cliente).every(input => input !== "")); // si almenos uno es !"" tira falso
+        nuevoCliente(cliente)
         
-        if(validarCampos(cliente)){
-            mostrarAlerta('Todos los campos son obligatorios');
-            return;
-        }else if (isNaN(telefono) || telefono < 0 ){
-            mostrarAlerta('telefono no valido');
-            return;
-        }
-        nuevoCliente(cliente);
     }
+})();
 
-    
-})()
+function validarCliente(obj){
+    return !Object.values(obj).every(input => input !== "");
+}

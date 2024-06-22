@@ -1,25 +1,18 @@
 {
   "clientes": [
     {
+      "id": "0074",
       "nombre": "Camilo Alvarez",
-      "email": "ca@hotmail.com",
-      "telefono": "+573024454835",
-      "empresa": "Universidad Popular Del Cesar",
-      "id": "dbd0"
+      "email": "camiloandresalvarezo@gmail.com",
+      "telefono": "3024454835",
+      "empresa": "University popular of cesar"
     },
     {
-      "id": "0e72",
-      "nombre": "Camilo Alvarez 2",
-      "email": "camiloandresalvarezo@hotmail.com",
-      "telefono": "+573024454835",
-      "empresa": "mondong"
-    },
-    {
-      "id": "6bf1",
-      "nombre": "Camilo Alvarez 3",
-      "email": "camiloandresalvarezo@hotmail.com",
-      "telefono": "+573024454835",
-      "empresa": "mondongo"
+      "id": "009f",
+      "nombre": "Mondongo",
+      "email": "mondongo@gmail.com",
+      "telefono": "32498234823498",
+      "empresa": "University popular of cesar"
     }
   ]
 }

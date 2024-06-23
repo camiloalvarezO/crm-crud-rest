@@ -46,3 +46,21 @@ export const editarCliente = async (id)=>{
         console.log(error);
     }
 }  
+
+export const actualizarCliente = async (cliente) =>{
+    try {
+        const {id}=cliente;
+        console.log(`${url}/${id}`);
+        debugger;
+        await fetch(`${url}/${id}`,{
+            method:'PUT',
+            body: JSON.stringify(cliente),
+            headers:{
+                'Content-Type' : 'Application/json'
+            }
+        })
+        window.location.href = 'index.html'
+    } catch (error) {
+        console.log(error);
+    }
+}

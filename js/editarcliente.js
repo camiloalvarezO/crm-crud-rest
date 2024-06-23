@@ -1,5 +1,5 @@
-import { editarCliente } from "./API.js";
-
+import { editarCliente,actualizarCliente } from "./API.js";
+import { mostrarMensaje, validarCliente } from "./funciones.js";
 (function(){
 
     const nombreInput = document.querySelector('#nombre')
@@ -7,7 +7,9 @@ import { editarCliente } from "./API.js";
     const empresaInput = document.querySelector('#empresa')
     const telefonoInput = document.querySelector('#telefono')
     const idInput = document.querySelector('#id')
-    
+    const formulario =document.querySelector('#formulario')
+    formulario.addEventListener('submit',modificarCliente)
+
     document.addEventListener('DOMContentLoaded',async ()=>{
         const parametrosURL = new URLSearchParams(window.location.search)//va a 
 
@@ -28,4 +30,24 @@ import { editarCliente } from "./API.js";
         empresaInput.value = empresa;
         idInput.value = id;
     }
+
+    async function modificarCliente(e){
+        e.preventDefault();
+        const cliente = {
+            nombre : nombreInput.value,
+            email : emailInput.value,
+            telefono: telefonoInput.value,
+            empresa : empresaInput.value,
+            id: (idInput.value)
+        }
+        console.log(cliente);
+        if(validarCliente(cliente)){
+            mostrarMensaje("todos los campos son obligatorios")
+            return;
+        }
+        await actualizarCliente(cliente);
+        
+    }
+
+
 })();

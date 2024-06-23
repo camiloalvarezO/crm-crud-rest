@@ -21,3 +21,6 @@ export function mostrarMensaje(mensaje){
         }, 3000);
     }
 }
+export function validarCliente(obj){
+    return !Object.values(obj).every(input => input !== "");
+}

@@ -1,5 +1,5 @@
 
-import { mostrarMensaje } from "./funciones.js";
+import { mostrarMensaje,validarCliente } from "./funciones.js";
 import { nuevoCliente } from "./API.js";
 (function(){
     const formulario = document.querySelector('#formulario')
@@ -30,6 +30,3 @@ import { nuevoCliente } from "./API.js";
     }
 })();
 
-function validarCliente(obj){
-    return !Object.values(obj).every(input => input !== "");
-}
